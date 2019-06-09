@@ -13,43 +13,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [{
-          loader : 'vue-style-loader'
-        }, {
-          loader: 'css-loader',
-          options: {
-            // 开启 CSS Modules
-            modules: true,
-            // 自定义生成的类名
-            localIdentName: '[local]_[hash:base64:8]'
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'vue-loader'
           }
-        }, {
-          loader: 'px2rem-loader',
-          // options here
-          options: {
-            remUni: 75,
-            remPrecision: 8
-          }
-        }]
+        ]
       },
       {
         test: /\.scss$/,
         use: [{
           loader : 'vue-style-loader'
         }, {
-            loader: "css-loader",
-            options: {
-              // 开启 CSS Modules
-              modules: true,
-              // 自定义生成的类名
-              localIdentName: '[local]_[hash:base64:8]'
-            } // translates CSS into CommonJS
+            loader: "css-loader"
         }, {
           loader: 'px2rem-loader',
-        // options here
+          // options here
           options: {
-            remUni: 75,
+            remUnit: 40,
             remPrecision: 8
           }
         }, {

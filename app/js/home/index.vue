@@ -1,21 +1,21 @@
 <template lang="">
-  <div :class="$style.home">
-    <h1>Home
-
-      <div class="title">title</div>
-    </h1>
-    
+  <div>
+    <heador />
+    <Slider /> 
+    <Novice /> 
   </div>
 </template>
 <script>
+import Heador from '../public/header.vue'
+import Slider from './hslider.vue'
+import Novice from './novice.vue'
 export default {
-  
+  components: {
+    Heador,
+    Slider,
+    Novice
+  }
 }
 </script>
-<style lang="scss" module>
-  @import '../../css/reset.scss';
-  .home {
-    color: red;
-    font-size: 80px;
-  }
+<style lang="scss" >
 </style>

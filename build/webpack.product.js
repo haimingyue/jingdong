@@ -1,46 +1,40 @@
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   mode: 'production',
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [{
-          loader : MiniCssExtractPlugin.loader
-        }, {
-          loader: 'css-loader',
-          options: {
-            // 开启 CSS Modules
-            modules: true,
-            // 自定义生成的类名
-            localIdentName: '[local]_[hash:base64:8]'
+        test: /\.vue$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              loaders: {
+                css: ExtractTextPlugin.extract({
+                  use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8',
+                  fallback: 'vue-style-loader' 
+                }),
+                scss: ExtractTextPlugin.extract({
+                  use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8!sass-loader',
+                  fallback: 'vue-style-loader'
+                })
+              }
+            }
           }
-        }, {
-          loader: 'px2rem-loader',
-          // options here
-          options: {
-            remUni: 75,
-            remPrecision: 8
-          }
-        }]
+        ]
       },
       {
         test: /\.scss$/,
         use: [{
           loader: MiniCssExtractPlugin.loader
         }, {
-            loader: "css-loader",
-            options: {
-              // 开启 CSS Modules
-              modules: true,
-              // 自定义生成的类名
-              localIdentName: '[local]_[hash:base64:8]'
-            } // translates CSS into CommonJS
+            loader: "css-loader"
         }, {
           loader: 'px2rem-loader',
         // options here
           options: {
-            remUni: 75,
+            remUnit: 40,
             remPrecision: 8
           }
         }, {

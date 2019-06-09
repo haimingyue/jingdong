@@ -8,18 +8,12 @@ const proConfig = require('./webpack.product')
 
 
 const commonConfig = {
-  entry: {
-    app: './app/js/main.js'
-  },
+  entry: ['./app/js/viewport.js', './app/js/main.js'],
   module: {
     rules: [
       {
         test: /\.html$/,
         loader: 'html-loader'
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
       }
     ]
   },
@@ -42,7 +36,6 @@ module.exports = env => {
   if (env && env.production) {
     return merge(commonConfig, proConfig)
   } else {
-    console.log(JSON.stringify(merge(commonConfig, devConfig).module.rules))
     return merge(commonConfig, devConfig)
   }
 }
