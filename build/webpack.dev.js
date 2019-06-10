@@ -16,7 +16,13 @@ module.exports = {
         test: /\.vue$/,
         use: [
           {
-            loader: 'vue-loader'
+            loader: 'vue-loader',
+            options: {
+              cssModules: {
+                localIdentName: '[path][name]---[local]---[hash:base64:5]',
+                camelCase: true
+              }
+            }
           }
         ]
       },
@@ -25,7 +31,11 @@ module.exports = {
         use: [{
           loader : 'vue-style-loader'
         }, {
-            loader: "css-loader"
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: '[path][name]---[local]---[hash:base64:5]'
+            }
         }, {
           loader: 'px2rem-loader',
           // options here

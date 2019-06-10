@@ -1,8 +1,8 @@
 <template>
   <article class=""> 
     <Slider :items="items" :cname="'slider'"/>
-    <section class="list">
-      <div class="item" v-for="item in enters" :key="item.img">
+    <section :class="$style.list">
+      <div :class="$style.item" v-for="item in enters" :key="item.img">
         <router-link :to="{ name: item.href}">
           <img :src="item.img" :alt="item.title">
           <h4>{{ item.title }}</h4>
@@ -67,7 +67,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" module>
   @import '../../css/element.scss';
   .slider {
     margin-top: 100px;

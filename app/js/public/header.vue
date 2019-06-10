@@ -1,9 +1,9 @@
 <template>
-  <div class="header">
-    <span class="left">
+  <div :class="$style.header">
+    <span :class="$style.left">
       <em>注册</em>&nbsp;|<em>登录</em>
     </span>
-    <btn class="btnDownload">App下载</btn>
+    <btn :class="$style.btnDownload">App下载</btn>
   </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss" module>
   @import "../../css/element.scss";
   .header {
     position: fixed;
