@@ -1,4 +1,5 @@
 const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 module.exports = {
   mode: 'development',
   devServer: {
@@ -21,6 +22,16 @@ module.exports = {
               cssModules: {
                 localIdentName: '[path][name]---[local]---[hash:base64:5]',
                 camelCase: true
+              },
+              oaders: {
+                css: ExtractTextPlugin.extract({
+                  use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8',
+                  fallback: 'vue-style-loader' 
+                }),
+                scss: ExtractTextPlugin.extract({
+                  use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8!sass-loader',
+                  fallback: 'vue-style-loader'
+                })
               }
             }
           }
@@ -31,18 +42,7 @@ module.exports = {
         use: [{
           loader : 'vue-style-loader'
         }, {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              localIdentName: '[path][name]---[local]---[hash:base64:5]'
-            }
-        }, {
-          loader: 'px2rem-loader',
-          // options here
-          options: {
-            remUnit: 40,
-            remPrecision: 8
-          }
+            loader: "css-loader"
         }, {
             loader: "sass-loader" // compiles Sass to CSS
         }]

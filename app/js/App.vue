@@ -8,6 +8,6 @@ export default {
   name: 'app'
 }
 </script>
-<style lang="css" scoped>
+<style lang="css">
   
 </style>

@@ -24,23 +24,23 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.scss$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader
-        }, {
-            loader: "css-loader"
-        }, {
-          loader: 'px2rem-loader',
-        // options here
-          options: {
-            remUnit: 40,
-            remPrecision: 8
-          }
-        }, {
-            loader: "sass-loader" // compiles Sass to CSS
-        }]
-      }
+      // {
+      //   test: /\.scss$/,
+      //   use: [{
+      //     loader: MiniCssExtractPlugin.loader
+      //   }, {
+      //       loader: "css-loader"
+      //   }, {
+      //     loader: 'px2rem-loader',
+      //   // options here
+      //     options: {
+      //       remUnit: 40,
+      //       remPrecision: 8
+      //     }
+      //   }, {
+      //       loader: "sass-loader" // compiles Sass to CSS
+      //   }]
+      // }
     ]
   },
   plugins: [
