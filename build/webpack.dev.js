@@ -17,35 +17,48 @@ module.exports = {
         test: /\.vue$/,
         use: [
           {
-            loader: 'vue-loader',
-            options: {
-              cssModules: {
-                localIdentName: '[path][name]---[local]---[hash:base64:5]',
-                camelCase: true
-              },
-              oaders: {
-                css: ExtractTextPlugin.extract({
-                  use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8',
-                  fallback: 'vue-style-loader' 
-                }),
-                scss: ExtractTextPlugin.extract({
-                  use: 'css-loader?minimize!px2rem-loader?remUnit=40&remPrecision=8!sass-loader',
-                  fallback: 'vue-style-loader'
-                })
-              }
-            }
+            loader: 'vue-loader'
           }
         ]
       },
       {
         test: /\.scss$/,
-        use: [{
-          loader : 'vue-style-loader'
+        oneOf: [{
+          resourceQuery: /module/,
+          use: [
+            'vue-style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                importLoaders: 1,
+                localIdentName: '[local]_[hash:base64:5]'
+              }
+            }, {
+              loader: 'px2rem-loader',
+              options: {
+                remUnit: 40,
+                remPrecision: 8
+              }
+            },
+            'sass-loader'
+          ]
         }, {
-            loader: "css-loader"
-        }, {
-            loader: "sass-loader" // compiles Sass to CSS
-        }]
+          use: [
+            'vue-style-loader',
+            'css-loader', {
+              loader: 'px2rem-loader',
+              options: {
+                remUnit: 40,
+                remPrecision: 8
+              }
+            },
+            'sass-loader'
+          ]
+        }],
+      }, {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader']
       }
     ]
   }

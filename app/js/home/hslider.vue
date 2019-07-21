@@ -1,6 +1,6 @@
 <template>
-  <article class=""> 
-    <Slider :items="items" :cname="'slider'"/>
+  <article> 
+    <Slider :items="items" :cname="$style.slider"/>
     <section :class="$style.list">
       <div :class="$style.item" v-for="item in enters" :key="item.img">
         <router-link :to="{ name: item.href}">

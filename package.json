@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --config ./build/webpack.common.js",
-    "build": "webpack --env.production --config ./build/webpack.common.js"
+    "start1": "webpack-dev-server --config ./build/webpack.common.js",
+    "build1": "webpack --env.production --config ./build/webpack.common.js",
+    "start": "webpack-dev-server --open",
+    "build": "webpack --env.production"
   },
   "repository": {
     "type": "git",
